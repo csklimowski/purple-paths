@@ -35,6 +35,7 @@ export class LoadScene extends Phaser.Scene {
         this.load.spritesheet('button-x', 'img/button-x.png', {frameWidth: 40, frameHeight: 40});
         this.load.spritesheet('rotate', 'img/rotate.png', {frameWidth: 70, frameHeight: 70});
         this.load.spritesheet('bye-ball', 'img/bye-ball.png', {frameWidth: 70, frameHeight: 70});
+        this.load.bitmapFont('words', 'font/words_0.png', 'font/words.fnt');
     }
 
     create() {
@@ -48,9 +49,14 @@ export class LoadScene extends Phaser.Scene {
         let data;
         if (dataString) {
             data = JSON.parse(dataString);
+            if (!data.highestBeaten) data.highestBeaten = 0;
+            if (!data.bestStreak) data.bestStreak = 0;
+            if (!data.winStreak) data.winStreak = 0;
         } else {
             data = {
-                highestBeaten: 0
+                highestBeaten: 0,
+                winStreak: 0,
+                bestStreak: 0
             };
             localStorage.setItem('ninepath_data', JSON.stringify(data));
         }
