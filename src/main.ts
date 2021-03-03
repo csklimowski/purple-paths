@@ -168,7 +168,9 @@ export class MainScene extends Phaser.Scene {
                 bestStreak = Math.max(bestStreak, winStreak);
             }
         } else {
-            winStreak = 0;
+            if (this.difficulty === 5) {
+                winStreak = 0;
+            }
             this.endMenu.add(this.add.image(300, 70, 'text-loss', drawFrom([0, 1, 2, 3, 4])));
         }
         this.registry.set('winStreak', winStreak);
